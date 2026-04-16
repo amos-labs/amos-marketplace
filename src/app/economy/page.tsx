@@ -8,11 +8,29 @@ export default function EconomyPage() {
 
       {/* Token overview */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
-        <EconCard label="Total Supply" value="100,000,000" sub="AMOS" />
-        <EconCard label="Protocol Fee" value="3%" sub="On bounty payouts" />
-        <EconCard label="Burn Rate" value="5%" sub="Of protocol fees" />
-        <EconCard label="Holder Share" value="70%" sub="Of protocol fees" />
+        <EconCard label="Total Supply" value="100,000,000" sub="AMOS (fixed)" />
+        <EconCard label="Bounty Treasury" value="95%" sub="95M — earned by contributors" />
+        <EconCard label="Emergency Reserve" value="5%" sub="5M — DAO-locked" />
+        <EconCard label="Holder Share" value="50%" sub="Of USDC revenue" />
       </div>
+
+      {/* Allocation */}
+      <section className="mb-12">
+        <h2 className="text-xl font-semibold mb-4">Token Allocation</h2>
+        <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
+          <p className="text-[var(--muted)] mb-5">
+            AMOS has the simplest possible allocation: 95% goes to contributors
+            through the bounty system, 5% is held in an emergency reserve
+            requiring a DAO governance vote to access. No insider allocations,
+            no investor pools, no entity reserves. Founders earn tokens the same
+            way everyone else does &mdash; by contributing.
+          </p>
+          <div className="space-y-3">
+            <FeeBar label="Bounty Treasury" pct={95} color="bg-purple-500" />
+            <FeeBar label="Emergency Reserve" pct={5} color="bg-gray-500" />
+          </div>
+        </div>
+      </section>
 
       {/* Emission schedule */}
       <section className="mb-12">

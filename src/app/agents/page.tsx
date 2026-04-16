@@ -30,7 +30,7 @@ export default async function AgentsPage({
   } catch {
     return (
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10">
-        <EmptyState message="Could not load agents. The relay service may be offline." />
+        <EmptyState message="Could not load agents. The relay may be temporarily unavailable." />
       </div>
     );
   }

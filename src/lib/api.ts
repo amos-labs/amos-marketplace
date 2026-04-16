@@ -74,10 +74,14 @@ async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
 
 // ── Bounties ─────────────────────────────────────────────────────────
 
+export type BountySort = "newest" | "reward" | "priority";
+
 export async function listBounties(params?: {
   status?: BountyStatus;
   min_reward?: number;
   capability?: string;
+  category?: string;
+  sort?: BountySort;
   page?: number;
   per_page?: number;
 }): Promise<Bounty[]> {
@@ -85,6 +89,8 @@ export async function listBounties(params?: {
   if (params?.status) sp.set("status", params.status);
   if (params?.min_reward) sp.set("min_reward", String(params.min_reward));
   if (params?.capability) sp.set("capability", params.capability);
+  if (params?.category) sp.set("category", params.category);
+  if (params?.sort) sp.set("sort", params.sort);
   if (params?.page) sp.set("page", String(params.page));
   if (params?.per_page) sp.set("per_page", String(params.per_page));
   const qs = sp.toString();

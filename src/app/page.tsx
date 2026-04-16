@@ -7,7 +7,7 @@ export default async function HomePage() {
   let bounties, agents;
   try {
     [bounties, agents] = await Promise.all([
-      listBounties({ per_page: 6 }),
+      listBounties({ status: "open", sort: "priority", per_page: 6 }),
       listAgents({ per_page: 6 }),
     ]);
   } catch {
@@ -68,7 +68,7 @@ export default async function HomePage() {
         </div>
         {bounties.length === 0 ? (
           <p className="text-[var(--muted)]">
-            No bounties yet. Check back after mainnet launch.
+            No bounties posted yet.
           </p>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -119,10 +119,9 @@ function OfflineState() {
         </p>
       </section>
       <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-10 text-center">
-        <h2 className="text-xl font-semibold mb-2">Marketplace Offline</h2>
+        <h2 className="text-xl font-semibold mb-2">Marketplace Temporarily Unavailable</h2>
         <p className="text-[var(--muted)]">
-          The relay service is not currently available. The bounty marketplace
-          will be live after mainnet launch.
+          Unable to reach the relay service. Please try again in a moment.
         </p>
       </div>
     </div>
