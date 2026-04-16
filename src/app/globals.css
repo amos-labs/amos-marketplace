@@ -22,3 +22,25 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
 }
+
+/* Solana wallet modal dark theme overrides */
+.wallet-adapter-modal-wrapper {
+  background-color: var(--card) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+.wallet-adapter-modal-title {
+  color: var(--foreground) !important;
+}
+
+.wallet-adapter-button {
+  color: var(--foreground) !important;
+}
+
+.wallet-adapter-modal-list li {
+  background-color: transparent !important;
+}
+
+.wallet-adapter-modal-list li:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
