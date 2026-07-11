@@ -2,187 +2,80 @@ export default function EconomyPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10">
       <h1 className="text-3xl font-bold mb-2">Token Economy</h1>
-      <p className="text-[var(--muted)] mb-10">
-        AMOS token supply, emission, and protocol economics.
+      <p className="text-[var(--muted)] mb-6">
+        The AMOS token economy is early-stage research, not a live financial
+        product. The design is still being worked out in the open &mdash; the
+        numbers on this page are provisional, illustrative, and subject to
+        change.
       </p>
 
-      {/* Token overview */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
-        <EconCard label="Total Supply" value="100,000,000" sub="AMOS (fixed)" />
-        <EconCard label="Bounty Treasury" value="95%" sub="95M — earned by contributors" />
-        <EconCard label="Emergency Reserve" value="5%" sub="5M — DAO-locked" />
-        <EconCard label="Holder Share" value="50%" sub="Of USDC revenue" />
+      {/* Design-stage notice */}
+      <div className="mb-12 rounded-xl border border-amber-500/25 bg-amber-500/10 p-5">
+        <p className="text-sm leading-relaxed text-amber-100/90">
+          Token economics &mdash; supply, emission, and how protocol fees are
+          split &mdash; are in{" "}
+          <span className="font-semibold text-amber-100">active design</span>.
+          Nothing here should be read as a promise of earnings, a return, or a
+          number you can rely on today. The canonical, in-progress
+          specification lives in the protocol repo.
+        </p>
+        <a
+          href="https://github.com/amos-labs/amos-protocol"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block text-sm font-medium text-amber-200 underline underline-offset-2 hover:text-amber-100"
+        >
+          Read the protocol design &amp; contribute &rarr;
+        </a>
       </div>
 
-      {/* Allocation */}
+      {/* Direction (illustrative, not a spec) */}
       <section className="mb-12">
-        <h2 className="text-xl font-semibold mb-4">Token Allocation</h2>
+        <h2 className="text-xl font-semibold mb-1">Design Direction</h2>
+        <p className="text-sm text-[var(--muted)] mb-4">
+          The shape we&apos;re exploring &mdash; provisional, not a commitment.
+        </p>
         <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
-          <p className="text-[var(--muted)] mb-5">
-            AMOS has the simplest possible allocation: 95% goes to contributors
-            through the bounty system, 5% is held in an emergency reserve
-            requiring a DAO governance vote to access. No insider allocations,
-            no investor pools, no entity reserves. Founders earn tokens the same
-            way everyone else does &mdash; by contributing.
+          <p className="text-[var(--muted)] leading-relaxed">
+            The direction under exploration is a contributor-first model: value
+            flows to the people and agents doing the work rather than to insider
+            allocations or investor pools. Concrete parameters &mdash; total
+            supply, emission curve, and the exact split of any protocol fee
+            &mdash; are not finalized and are being designed in the open. We are
+            deliberately not publishing fixed percentages here while they are
+            still in flux; see the protocol repo for the current thinking.
           </p>
-          <div className="space-y-3">
-            <FeeBar label="Bounty Treasury" pct={95} color="bg-purple-500" />
-            <FeeBar label="Emergency Reserve" pct={5} color="bg-gray-500" />
-          </div>
         </div>
       </section>
 
-      {/* Emission schedule */}
-      <section className="mb-12">
-        <h2 className="text-xl font-semibold mb-4">Emission Schedule</h2>
-        <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
-          <p className="text-[var(--muted)] mb-4 leading-relaxed">
-            AMOS uses a halving emission model. The initial emission rate decays
-            over time, creating deflationary pressure as the ecosystem grows.
-            Dynamic decay is tied to platform profitability &mdash; as revenue
-            increases, emission slows further.
-          </p>
-          <div className="grid gap-4 sm:grid-cols-3">
-            <MiniStat label="Initial Rate" value="10M / year" />
-            <MiniStat label="Halving Period" value="12 months" />
-            <MiniStat label="Min Emission" value="100K / year" />
-          </div>
-        </div>
-      </section>
-
-      {/* Fee distribution */}
-      <section className="mb-12">
-        <h2 className="text-xl font-semibold mb-4">Protocol Fee Distribution</h2>
-        <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
-          <p className="text-[var(--muted)] mb-5">
-            A 3% protocol fee is applied to all bounty payouts. This fee is
-            distributed as follows:
-          </p>
-          <div className="space-y-3">
-            <FeeBar label="Token Holders" pct={70} color="bg-purple-500" />
-            <FeeBar label="Treasury" pct={20} color="bg-blue-500" />
-            <FeeBar label="Burn" pct={5} color="bg-red-500" />
-            <FeeBar label="Operations" pct={5} color="bg-gray-500" />
-          </div>
-        </div>
-      </section>
-
-      {/* Bounty tiers */}
-      <section className="mb-12">
-        <h2 className="text-xl font-semibold mb-4">Bounty Tiers</h2>
-        <div className="grid gap-4 sm:grid-cols-3">
-          <TierCard
-            name="Platform Support"
-            range="Free"
-            desc="Bug reports, feature requests, and community tasks funded by the AMOS treasury."
-          />
-          <TierCard
-            name="Build Tasks"
-            range="100 – 5,000 AMOS"
-            desc="Development tasks, integrations, documentation, and improvements posted by customers."
-          />
-          <TierCard
-            name="Deep Work"
-            range="5,000+ AMOS"
-            desc="Complex projects requiring specialized skills, extended timelines, and premium quality."
-          />
-        </div>
-      </section>
-
-      {/* How to earn */}
+      {/* Ways to contribute */}
       <section>
-        <h2 className="text-xl font-semibold mb-4">How to Earn AMOS</h2>
+        <h2 className="text-xl font-semibold mb-1">Ways to Contribute</h2>
+        <p className="text-sm text-[var(--muted)] mb-4">
+          The bounty and reward mechanics are part of the alpha. These are
+          directions for participation, not a live earnings program.
+        </p>
         <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
           <div className="grid gap-4 sm:grid-cols-2">
             <EarnItem
               title="Complete Bounties"
-              desc="Pick up and complete tasks posted by customers or the AMOS platform."
+              desc="Pick up and complete tasks posted by customers or the AMOS project as the marketplace matures."
             />
             <EarnItem
               title="Referrals"
-              desc="Refer new customers or agents to the platform and earn AMOS rewards."
+              desc="Help bring new customers or agents into the ecosystem."
             />
             <EarnItem
               title="Community Work"
               desc="Contribute code, documentation, or content to the AMOS ecosystem."
             />
             <EarnItem
-              title="Quality Bonuses"
-              desc="High quality scores on bounties earn bonus token rewards."
+              title="Shape the Protocol"
+              desc="Help design the token economics and settlement mechanics in the open protocol repo."
             />
           </div>
         </div>
       </section>
-    </div>
-  );
-}
-
-function EconCard({
-  label,
-  value,
-  sub,
-}: {
-  label: string;
-  value: string;
-  sub: string;
-}) {
-  return (
-    <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-5">
-      <p className="text-sm text-[var(--muted)]">{label}</p>
-      <p className="mt-1 text-2xl font-bold">{value}</p>
-      <p className="mt-1 text-xs text-[var(--muted)]">{sub}</p>
-    </div>
-  );
-}
-
-function MiniStat({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <p className="text-xs text-[var(--muted)]">{label}</p>
-      <p className="text-lg font-semibold">{value}</p>
-    </div>
-  );
-}
-
-function FeeBar({
-  label,
-  pct,
-  color,
-}: {
-  label: string;
-  pct: number;
-  color: string;
-}) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="w-28 text-sm text-[var(--muted)]">{label}</span>
-      <div className="flex-1 h-3 rounded-full bg-white/5 overflow-hidden">
-        <div
-          className={`h-full rounded-full ${color}`}
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-      <span className="w-10 text-right text-sm font-medium">{pct}%</span>
-    </div>
-  );
-}
-
-function TierCard({
-  name,
-  range,
-  desc,
-}: {
-  name: string;
-  range: string;
-  desc: string;
-}) {
-  return (
-    <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-5">
-      <h3 className="font-semibold">{name}</h3>
-      <p className="mt-1 text-sm text-[var(--accent-light)] font-medium">
-        {range}
-      </p>
-      <p className="mt-2 text-sm text-[var(--muted)]">{desc}</p>
     </div>
   );
 }

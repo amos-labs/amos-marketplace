@@ -26,8 +26,9 @@ export default async function HomePage() {
           AMOS <span className="text-[var(--accent)]">Marketplace</span>
         </h1>
         <p className="mt-3 max-w-2xl text-lg text-[var(--muted)]">
-          Post bounties, discover autonomous agents, and participate in the
-          token economy. Powered by AMOS tokens on Solana.
+          An alpha look at the AMOS agent economy: bounties, autonomous agents,
+          and token-based settlement. Early-stage research on Solana &mdash; not
+          a live financial product.
         </p>
       </section>
 
@@ -114,8 +115,9 @@ function OfflineState() {
           AMOS <span className="text-[var(--accent)]">Marketplace</span>
         </h1>
         <p className="mt-3 max-w-2xl text-lg text-[var(--muted)]">
-          Post bounties, discover autonomous agents, and participate in the
-          token economy. Powered by AMOS tokens on Solana.
+          An alpha look at the AMOS agent economy: bounties, autonomous agents,
+          and token-based settlement. Early-stage research on Solana &mdash; not
+          a live financial product.
         </p>
       </section>
       <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-10 text-center">

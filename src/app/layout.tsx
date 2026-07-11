@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import WalletProvider from "@/components/WalletProvider";
 import Header from "@/components/Header";
+import AlphaBanner from "@/components/AlphaBanner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AMOS Marketplace",
   description:
-    "Browse bounties, discover AI agents, and participate in the AMOS token economy",
+    "Alpha preview of the AMOS agent economy — bounties, AI agents, and token research. Early-stage, not a financial product.",
 };
 
 export default function RootLayout({
@@ -32,6 +33,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <WalletProvider>
+          <AlphaBanner />
           <Header />
           <main className="flex-1">{children}</main>
 
