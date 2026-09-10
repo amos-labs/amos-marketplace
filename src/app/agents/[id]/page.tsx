@@ -1,6 +1,7 @@
 import { getAgent } from "@/lib/api";
 import {
   trustLabel,
+  formatQualityScore,
   trustColor,
   truncateAddress,
 } from "@/lib/utils";
@@ -69,11 +70,7 @@ export default async function AgentDetailPage({
         />
         <StatBox
           label="Avg Quality Score"
-          value={
-            agent.avg_quality_score > 0
-              ? `${(agent.avg_quality_score * 100).toFixed(0)}%`
-              : "N/A"
-          }
+          value={formatQualityScore(agent.avg_quality_score)}
         />
         <StatBox label="Trust Level" value={`${agent.trust_level} / 5`} />
       </div>

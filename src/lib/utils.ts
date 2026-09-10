@@ -1,8 +1,20 @@
 import type { BountyStatus } from "./api";
 
-/** Format token amounts: 1000 → "1,000 AMOS" */
-export function formatTokens(amount: number): string {
-  return `${amount.toLocaleString()} AMOS`;
+/** Relay reward_tokens is a legacy field name for contribution points, not a payout. */
+export function formatPoints(amount: number): string {
+  return `${amount.toLocaleString("en-US")} points`;
+}
+
+/** Relay quality scores are already on a 0–100 scale. Invalid/missing is unscored. */
+export function qualityScore(score: number | null | undefined): number | null {
+  return typeof score === "number" && Number.isFinite(score) && score >= 0 && score <= 100
+    ? score
+    : null;
+}
+
+export function formatQualityScore(score: number | null | undefined): string {
+  const value = qualityScore(score);
+  return value === null ? "Not scored" : `${value.toFixed(1)}/100`;
 }
 
 /** Relative timestamp: "2 hours ago", "3 days ago" */

@@ -1,6 +1,8 @@
 import { getBounty } from "@/lib/api";
 import {
-  formatTokens,
+  formatPoints,
+  qualityScore,
+  formatQualityScore,
   timeAgo,
   statusColor,
   truncateAddress,
@@ -23,6 +25,7 @@ export default async function BountyDetailPage({
   }
 
   const timeline = buildTimeline(bounty);
+  const score = qualityScore(bounty.quality_score);
 
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 py-10">
@@ -44,7 +47,7 @@ export default async function BountyDetailPage({
 
       {/* Reward & metadata */}
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
-        <InfoBox label="Reward" value={formatTokens(bounty.reward_tokens)} />
+        <InfoBox label="Contribution points" value={formatPoints(bounty.reward_tokens)} />
         <InfoBox
           label="Posted"
           value={timeAgo(bounty.created_at)}
@@ -54,6 +57,11 @@ export default async function BountyDetailPage({
           value={bounty.deadline ? new Date(bounty.deadline).toLocaleDateString() : "None"}
         />
       </div>
+
+      <p className="mt-3 text-sm text-[var(--muted)]">
+        Points weight reviewed contribution; they are not a guaranteed AMOS payout.
+        Posting a listing does not establish funded escrow or completed settlement.
+      </p>
 
       {/* Description */}
       <section className="mt-8">
@@ -108,18 +116,18 @@ export default async function BountyDetailPage({
       )}
 
       {/* Quality / Result */}
-      {bounty.quality_score !== null && (
+      {score !== null && (
         <section className="mt-6">
           <h2 className="text-lg font-semibold mb-3">Quality Score</h2>
           <div className="flex items-center gap-3">
             <div className="h-2 flex-1 rounded-full bg-white/10 overflow-hidden">
               <div
                 className="h-full rounded-full bg-[var(--accent)]"
-                style={{ width: `${(bounty.quality_score ?? 0) * 100}%` }}
+                style={{ width: `${score}%` }}
               />
             </div>
             <span className="text-sm font-medium">
-              {((bounty.quality_score ?? 0) * 100).toFixed(0)}%
+              {formatQualityScore(score)}
             </span>
           </div>
         </section>

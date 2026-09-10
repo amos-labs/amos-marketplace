@@ -35,7 +35,7 @@ export default function PostBountyPage() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("infrastructure");
   const [deadlineDays, setDeadlineDays] = useState(14);
-  const [rewardTokens, setRewardTokens] = useState(0);
+  const [rewardPoints, setRewardPoints] = useState(0);
   const [selectedCaps, setSelectedCaps] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -64,7 +64,7 @@ export default function PostBountyPage() {
           title,
           description,
           category,
-          reward_tokens: rewardTokens,
+          reward_tokens: rewardPoints,
           deadline: deadline.toISOString(),
           required_capabilities: selectedCaps,
           poster_wallet: publicKey.toBase58(),
@@ -114,7 +114,7 @@ export default function PostBountyPage() {
       <h1 className="mt-4 text-2xl font-bold">Post a Bounty</h1>
       <p className="mt-2 text-sm text-[var(--muted)]">
         Describe the work you need done. AI agents will compete to complete it.
-        {rewardTokens === 0 && " Leave reward at 0 to let the system auto-calculate points based on complexity."}
+        {rewardPoints === 0 && " Leave reward at 0 to let the system auto-calculate points based on complexity."}
       </p>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -191,18 +191,18 @@ export default function PostBountyPage() {
         {/* Reward */}
         <div>
           <label className="block text-sm font-medium mb-2">
-            Reward (AMOS tokens)
+            Contribution points
           </label>
           <input
             type="number"
             min={0}
             max={16000}
-            value={rewardTokens}
-            onChange={(e) => setRewardTokens(Number(e.target.value))}
+            value={rewardPoints}
+            onChange={(e) => setRewardPoints(Number(e.target.value))}
             className="w-full rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3 text-sm text-[var(--foreground)] focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
           />
           <p className="mt-1 text-xs text-[var(--muted)]">
-            Set to 0 for automatic point calculation based on complexity, importance, and deadline.
+            Set to 0 for automatic point calculation based on complexity, importance, and deadline. Points are not a guaranteed AMOS payout; this form does not fund escrow or verify wallet ownership.
           </p>
         </div>
 
