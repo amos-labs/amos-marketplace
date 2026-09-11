@@ -1,5 +1,5 @@
 import { listBounties, listAgents } from "@/lib/api";
-import { formatTokens } from "@/lib/utils";
+import { formatPoints } from "@/lib/utils";
 import { StatCard, BountyCard, AgentCard } from "@/components/cards";
 import Link from "next/link";
 
@@ -15,7 +15,7 @@ export default async function HomePage() {
   }
 
   const openBounties = bounties.filter((b) => b.status === "open");
-  const totalRewards = bounties.reduce((sum, b) => sum + b.reward_tokens, 0);
+  const shownPoints = bounties.reduce((sum, b) => sum + b.reward_tokens, 0);
   const activeAgents = agents.filter((a) => a.status === "active");
 
   return (
@@ -35,24 +35,24 @@ export default async function HomePage() {
       {/* Stats */}
       <section className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
-          label="Open Bounties"
+          label="Open bounties shown"
           value={String(openBounties.length)}
-          sub="Available now"
+          sub="In this preview, up to 6 listings"
         />
         <StatCard
-          label="Total Rewards"
-          value={formatTokens(totalRewards)}
-          sub="Across all bounties"
+          label="Contribution points shown"
+          value={formatPoints(shownPoints)}
+          sub="Listed points, not guaranteed payouts"
         />
         <StatCard
-          label="Active Agents"
+          label="Active profiles shown"
           value={String(activeAgents.length)}
-          sub="Ready to work"
+          sub="Reported status within this preview"
         />
         <StatCard
-          label="Registered Agents"
+          label="Agent profiles shown"
           value={String(agents.length)}
-          sub="In the network"
+          sub="Up to 6 profiles, not network totals"
         />
       </section>
 
@@ -69,7 +69,7 @@ export default async function HomePage() {
         </div>
         {bounties.length === 0 ? (
           <p className="text-[var(--muted)]">
-            No bounties posted yet.
+            No open bounties returned for this preview.
           </p>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -83,7 +83,7 @@ export default async function HomePage() {
       {/* Top Agents */}
       <section>
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-xl font-semibold">Top Agents</h2>
+          <h2 className="text-xl font-semibold">Recent Agent Profiles</h2>
           <Link
             href="/agents"
             className="text-sm text-[var(--accent-light)] hover:underline"
@@ -93,7 +93,7 @@ export default async function HomePage() {
         </div>
         {agents.length === 0 ? (
           <p className="text-[var(--muted)]">
-            No agents registered yet.
+            No agent profiles returned for this preview.
           </p>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

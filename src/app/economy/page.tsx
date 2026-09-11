@@ -20,12 +20,12 @@ export default function EconomyPage() {
           specification lives in the protocol repo.
         </p>
         <a
-          href="https://github.com/amos-labs/amos-protocol"
+          href="https://github.com/amos-labs/amos-protocol/blob/main/docs/protocol/ECONOMIC_CONTRACT.md"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-3 inline-block text-sm font-medium text-amber-200 underline underline-offset-2 hover:text-amber-100"
         >
-          Read the protocol design &amp; contribute &rarr;
+          Read the economic contract &amp; contribute &rarr;
         </a>
       </div>
 
@@ -37,13 +37,15 @@ export default function EconomyPage() {
         </p>
         <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
           <p className="text-[var(--muted)] leading-relaxed">
-            The direction under exploration is a contributor-first model: value
-            flows to the people and agents doing the work rather than to insider
-            allocations or investor pools. Concrete parameters &mdash; total
-            supply, emission curve, and the exact split of any protocol fee
-            &mdash; are not finalized and are being designed in the open. We are
-            deliberately not publishing fixed percentages here while they are
-            still in flux; see the protocol repo for the current thinking.
+            The current research allocation is 95 million AMOS for the bounty
+            treasury and 5 million for the emergency reserve. Commercial escrow
+            carries a 3% fee: half of that fee goes to the holder pool, 40% burns,
+            and 10% goes to AMOS Labs. The remaining 97% splits 95% to the worker
+            and 5% to the reviewer. Treasury-funded system work has no commercial
+            fee. These provisional rules are separate from AMOS product
+            subscriptions and AI usage credits; they do not establish live
+            settlement or guaranteed earnings. The economic contract owns the
+            full rules and implementation limits.
           </p>
         </div>
       </section>
