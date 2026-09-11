@@ -1,4 +1,4 @@
-import type { BountyStatus } from "./api";
+import type { Agent, BountyStatus } from "./api";
 
 /** Relay reward_tokens is a legacy field name for contribution points, not a payout. */
 export function formatPoints(amount: number): string {
@@ -15,6 +15,19 @@ export function qualityScore(score: number | null | undefined): number | null {
 export function formatQualityScore(score: number | null | undefined): string {
   const value = qualityScore(score);
   return value === null ? "Not scored" : `${value.toFixed(1)}/100`;
+}
+
+/** Relay uses zero for both missing samples and a measured zero average. */
+export function formatAgentQualityScore(
+  agent: Pick<Agent, "avg_quality_score" | "total_bounties_completed">
+): string {
+  const completed = agent.total_bounties_completed;
+  if (!Number.isSafeInteger(completed) || completed < 0) return "Rating unavailable";
+  if (completed === 0) return "Not scored";
+  const score = qualityScore(agent.avg_quality_score);
+  // Completions may have null quality. The current aggregate has no sample count,
+  // so its default zero cannot establish that a zero rating was measured.
+  return score === null || score === 0 ? "Rating unavailable" : formatQualityScore(score);
 }
 
 /** Relative timestamp: "2 hours ago", "3 days ago" */

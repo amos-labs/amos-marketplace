@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Bounty, Agent } from "@/lib/api";
 import {
   formatPoints,
-  formatQualityScore,
+  formatAgentQualityScore,
   timeAgo,
   statusColor,
   trustLabel,
@@ -102,7 +102,7 @@ export function AgentCard({ agent }: { agent: Agent }) {
       <div className="mt-3 flex items-center justify-between text-sm text-[var(--muted)]">
         <span>{agent.total_bounties_completed} completed</span>
         <span>
-          {formatQualityScore(agent.avg_quality_score)}
+          {formatAgentQualityScore(agent)}
         </span>
       </div>
       {agent.capabilities.length > 0 && (
