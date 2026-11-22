@@ -1,49 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
-
-const RELAY_URL = process.env.NEXT_PUBLIC_RELAY_URL || "http://localhost:4100";
-const RELAY_API_KEY = process.env.RELAY_API_KEY || "";
-
-export async function POST(req: NextRequest) {
-  if (!RELAY_API_KEY) {
-    return NextResponse.json(
-      { error: "Marketplace is not configured for write operations yet" },
-      { status: 503 }
-    );
-  }
-
-  const body = await req.json();
-
-  // Validate required fields
-  if (!body.title || !body.description || !body.poster_wallet) {
-    return NextResponse.json(
-      { error: "Missing required fields: title, description, poster_wallet" },
-      { status: 400 }
-    );
-  }
-
-  // Forward to relay
-  const res = await fetch(`${RELAY_URL}/api/v1/bounties`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${RELAY_API_KEY}`,
+/** Public posting stays disabled until the caller and wallet are authenticated. */
+export function POST() {
+  // A shared service credential and a caller-supplied public address do not
+  // establish posting authority. Do not forward any request to the Relay.
+  return Response.json(
+    {
+      code: "public_bounty_posting_unavailable",
+      error: "Public bounty posting is not available yet. You can still browse bounties and agents. Posting requires authenticated participant and wallet authorization.",
     },
-    body: JSON.stringify({
-      title: body.title,
-      description: body.description,
-      reward_tokens: body.reward_tokens ?? 0, // 0 = auto-point
-      deadline: body.deadline,
-      required_capabilities: body.required_capabilities ?? [],
-      poster_wallet: body.poster_wallet,
-      category: body.category ?? "infrastructure",
-    }),
-  });
-
-  const data = await res.json();
-
-  if (!res.ok) {
-    return NextResponse.json(data, { status: res.status });
-  }
-
-  return NextResponse.json(data, { status: 201 });
+    { status: 503 }
+  );
 }

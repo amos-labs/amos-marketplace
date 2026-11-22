@@ -21,7 +21,7 @@ const CATEGORY_TABS = [
 const SORT_OPTIONS: { label: string; sort: BountySort }[] = [
   { label: "Priority", sort: "priority" },
   { label: "Newest", sort: "newest" },
-  { label: "Reward", sort: "reward" },
+  { label: "Points", sort: "reward" },
 ];
 
 function buildHref(params: Record<string, string | undefined>) {

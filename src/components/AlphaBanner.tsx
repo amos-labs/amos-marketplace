@@ -19,12 +19,12 @@ export default function AlphaBanner() {
           the AMOS Protocol is early-stage research, not a financial product.
           Numbers are provisional and subject to change.{" "}
           <a
-            href="https://github.com/amos-labs/amos-protocol"
+            href="https://github.com/amos-labs/amos-protocol/blob/main/docs/protocol/ECONOMIC_CONTRACT.md"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium underline underline-offset-2 hover:text-amber-100"
           >
-            Come catch the vision &amp; contribute
+            Read the research economic contract
           </a>
           .
         </p>

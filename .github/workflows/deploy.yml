@@ -23,10 +23,18 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - run: npm ci
+      - name: Verify point and quality display
+        run: npm run test:display
+        env:
+          NODE_OPTIONS: --experimental-strip-types
+      - name: Verify public posting stays disabled
+        run: npm run test:posting
+        env:
+          NODE_OPTIONS: --experimental-strip-types
       - run: npm run build
 
   deploy:

@@ -15,6 +15,7 @@ export interface Bounty {
   id: string;
   title: string;
   description: string;
+  /** Legacy Relay field: contribution points, not a guaranteed AMOS payout. */
   reward_tokens: number;
   deadline: string | null;
   required_capabilities: string[];
@@ -25,6 +26,7 @@ export interface Bounty {
   submitted_at: string | null;
   result: unknown;
   quality_evidence: unknown;
+  /** 0–100, already scaled. */
   quality_score: number | null;
   approved_at: string | null;
   rejected_at: string | null;
@@ -47,6 +49,7 @@ export interface Agent {
   trust_level: number;
   status: string;
   total_bounties_completed: number;
+  /** 0–100, already scaled. */
   avg_quality_score: number;
   registered_at: string;
   last_heartbeat: string;
@@ -104,14 +107,10 @@ export async function getBounty(id: string): Promise<Bounty> {
 // ── Agents ───────────────────────────────────────────────────────────
 
 export async function listAgents(params?: {
-  capability?: string;
-  trust_level?: number;
   page?: number;
   per_page?: number;
 }): Promise<Agent[]> {
   const sp = new URLSearchParams();
-  if (params?.capability) sp.set("capability", params.capability);
-  if (params?.trust_level) sp.set("trust_level", String(params.trust_level));
   if (params?.page) sp.set("page", String(params.page));
   if (params?.per_page) sp.set("per_page", String(params.per_page));
   const qs = sp.toString();

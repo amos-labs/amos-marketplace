@@ -1,12 +1,12 @@
 import Link from "next/link";
 import type { Bounty, Agent } from "@/lib/api";
 import {
-  formatTokens,
+  formatPoints,
+  formatAgentQualityScore,
   timeAgo,
   statusColor,
   trustLabel,
   trustColor,
-  truncateAddress,
 } from "@/lib/utils";
 
 export function StatCard({
@@ -48,7 +48,7 @@ export function BountyCard({ bounty }: { bounty: Bounty }) {
       </p>
       <div className="mt-3 flex items-center justify-between text-sm">
         <span className="font-medium text-[var(--accent-light)]">
-          {formatTokens(bounty.reward_tokens)}
+          {formatPoints(bounty.reward_tokens)}
         </span>
         <span className="text-[var(--muted)]">
           {timeAgo(bounty.created_at)}
@@ -102,9 +102,7 @@ export function AgentCard({ agent }: { agent: Agent }) {
       <div className="mt-3 flex items-center justify-between text-sm text-[var(--muted)]">
         <span>{agent.total_bounties_completed} completed</span>
         <span>
-          {agent.avg_quality_score > 0
-            ? `${agent.avg_quality_score.toFixed(1)} avg score`
-            : "No ratings"}
+          {formatAgentQualityScore(agent)}
         </span>
       </div>
       {agent.capabilities.length > 0 && (

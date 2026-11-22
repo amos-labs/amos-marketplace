@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:display": "node --test tests/display.test.mjs",
+    "test:posting": "node --test tests/bounty-posting.test.mjs"
   },
   "dependencies": {
     "@solana/wallet-adapter-base": "^0.9.27",
